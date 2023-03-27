@@ -1,2 +1,13 @@
 <p>list works!</p>
 <a routerLink="item/25">Ссылка на статью</a>
+<p *ngFor="let item of list">{{item.title}}</p>
+
+<mat-paginator #paginator
+               [length]="pageInfo.nbHits"
+               (page)="onPageChange($event)"
+               [pageSize]="pageInfo.hitsPerPage"
+               [showFirstLastButtons]="false"
+               [hidePageSize]="true"
+               [pageIndex]="pageInfo.page"
+               aria-label="Select page">
+</mat-paginator>

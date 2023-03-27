@@ -6,6 +6,11 @@ import {ArticleComponent} from "./article/article.component";
 const routes: Routes = [
   {
     path: '',
+    redirectTo: 'list',
+    pathMatch: 'full'
+  },
+  {
+    path: 'list',
     component: ListComponent
   },
   {
