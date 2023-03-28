@@ -1,4 +1,5 @@
 import {Component, OnInit, ChangeDetectionStrategy, Input} from '@angular/core';
+import {Item} from "../Interfaces/item";
 
 @Component({
   selector: 'app-item',
@@ -8,7 +9,7 @@ import {Component, OnInit, ChangeDetectionStrategy, Input} from '@angular/core';
 })
 export class ItemComponent implements OnInit {
 
-  @Input() item: any;
+  @Input() item!: Item;
 
   constructor(
   ) { }

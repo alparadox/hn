@@ -2,6 +2,7 @@ import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit
 import {ActivatedRoute, Params} from "@angular/router";
 import {DataService} from "../services/data.service";
 import {Subject, switchMap, takeUntil} from "rxjs";
+import {Item} from "../Interfaces/item";
 
 interface TreeNode {
   text: string;
@@ -16,7 +17,7 @@ interface TreeNode {
 })
 export class ArticleComponent implements OnInit, OnDestroy {
   tree!: TreeNode[];
-  item: any;
+  item!: Item;
 
   private destroy$ = new Subject<void>();
 

@@ -4,6 +4,7 @@ import {ActivatedRoute, Params, Router} from "@angular/router";
 import {EMPTY, Subject, Subscription, switchMap, takeUntil} from "rxjs";
 import {PageInfo} from "../Interfaces/page-info";
 import {PageEvent} from "@angular/material/paginator";
+import {Item} from "../Interfaces/item";
 
 @Component({
   selector: 'app-list',
@@ -12,8 +13,8 @@ import {PageEvent} from "@angular/material/paginator";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ListComponent implements OnInit, OnDestroy {
-  public pageInfo: any = {};
-  public list: any = [];
+  public pageInfo: PageInfo = {} as PageInfo;
+  public list: Item[] = [];
   public loading = true;
 
   private destroy$ = new Subject<void>();
