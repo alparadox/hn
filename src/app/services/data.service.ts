@@ -17,10 +17,10 @@ export class DataService {
     let queryParams = new HttpParams();
     queryParams = queryParams.append('page', page);
     queryParams = queryParams.append('tags', 'front_page');
-    return this.http.get('http://hn.algolia.com/api/v1/search', {params: queryParams});
+    return this.http.get('https://cors-anywhere.herokuapp.com/http://hn.algolia.com/api/v1/search', {params: queryParams});
   }
 
   public getComments(id: string): Observable<any> {
-    return this.http.get(`http://hn.algolia.com/api/v1/items/${id}`);
+    return this.http.get(`https://cors-anywhere.herokuapp.com/http://hn.algolia.com/api/v1/items/${id}`);
   }
 }
