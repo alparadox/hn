@@ -1,1 +1,13 @@
-<p>article works!</p>
+<div class="wrapper">
+  <tree-root [nodes]="tree">
+    <ng-template #treeNodeTemplate let-node let-index="index">
+      <div>
+        <div class="title">
+          <div>{{node.data.author}}</div>
+          <div>{{node.data.created_at | date}}</div>
+        </div>
+        <div [innerHTML]="node.data.text"></div>
+      </div>
+    </ng-template>
+  </tree-root>
+</div>

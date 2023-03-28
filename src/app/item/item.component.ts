@@ -9,12 +9,10 @@ import {Component, OnInit, ChangeDetectionStrategy, Input} from '@angular/core';
 export class ItemComponent implements OnInit {
 
   @Input() item: any;
-  url = '';
 
-  constructor() { }
+  constructor(
+  ) { }
 
-  ngOnInit(): void {
-    this.url = this.item.url
-  }
+  ngOnInit(): void {}
 
 }

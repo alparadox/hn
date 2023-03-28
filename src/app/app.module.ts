@@ -9,6 +9,10 @@ import {HttpClientModule} from "@angular/common/http";
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {MatPaginatorModule} from "@angular/material/paginator";
 import { ItemComponent } from './item/item.component';
+import {MatTreeModule} from "@angular/material/tree";
+import {MatIconModule} from "@angular/material/icon";
+import {MatButtonModule} from "@angular/material/button";
+import {TreeModule} from "@circlon/angular-tree-component";
 
 @NgModule({
   declarations: [
@@ -23,6 +27,10 @@ import { ItemComponent } from './item/item.component';
     HttpClientModule,
     NoopAnimationsModule,
     MatPaginatorModule,
+    MatTreeModule,
+    MatIconModule,
+    MatButtonModule,
+    TreeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

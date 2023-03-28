@@ -2,12 +2,12 @@
   <div class="item-str-up">
     <p class="item-text"><ng-content></ng-content></p>
     <p class="item-text">{{item.title}}</p>
-    <a class="item-url" [href]='url' target="_blank">ссылка</a>
+    <a class="item-url" [href]="item.url" target="_blank">ссылка</a>
   </div>
   <div class="item-str-down">
     <p class="item-text">{{item.points}} points</p>
     <p class="item-text">by {{item.author}}</p>
     <div class="item-liner"></div>
-    <a class="item-url">{{item.num_comments}} comments</a>
+    <a class="item-url" routerLink="/item/{{item.objectID}}">{{item.num_comments}} comments</a>
   </div>
 </div>

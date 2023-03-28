@@ -19,4 +19,8 @@ export class DataService {
     queryParams = queryParams.append('tags', 'front_page');
     return this.http.get('http://hn.algolia.com/api/v1/search', {params: queryParams});
   }
+
+  public getComments(id: string): Observable<any> {
+    return this.http.get(`http://hn.algolia.com/api/v1/items/${id}`);
+  }
 }
