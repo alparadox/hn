@@ -1,7 +1,7 @@
-import {Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, OnDestroy} from '@angular/core';
 import {DataService} from "../services/data.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
-import {EMPTY, switchMap} from "rxjs";
+import {EMPTY, Subject, Subscription, switchMap, takeUntil} from "rxjs";
 import {PageInfo} from "../Interfaces/page-info";
 import {PageEvent} from "@angular/material/paginator";
 
@@ -11,10 +11,12 @@ import {PageEvent} from "@angular/material/paginator";
   styleUrls: ['./list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ListComponent implements OnInit {
+export class ListComponent implements OnInit, OnDestroy {
   public pageInfo: any = {};
   public list: any = [];
   public loading = true;
+
+  private destroy$ = new Subject<void>();
 
   constructor(
     private dataService: DataService,
@@ -23,7 +25,7 @@ export class ListComponent implements OnInit {
     private cdr: ChangeDetectorRef
   ) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.route.queryParams
       .pipe(
         switchMap((queryParams: Params) => {
@@ -33,22 +35,30 @@ export class ListComponent implements OnInit {
             return EMPTY;
           }
           return this.dataService.getList(page);
-        })
+        }),
+        takeUntil(this.destroy$)
       )
-      .subscribe(data => {
-        this.pageInfo.page = data.page;
-        this.pageInfo.hitsPerPage = data.hitsPerPage;
-        this.pageInfo.nbHits = data.nbHits;
-        this.pageInfo.nbPages = data.nbPages;
-        this.loading = false;
-        this.list = data.hits;
-        this.cdr.detectChanges();
+      .subscribe({
+        next: data => {
+          this.pageInfo.page = data.page;
+          this.pageInfo.hitsPerPage = data.hitsPerPage;
+          this.pageInfo.nbHits = data.nbHits;
+          this.pageInfo.nbPages = data.nbPages;
+          this.loading = false;
+          this.list = data.hits;
+          this.cdr.detectChanges();
+        },
+        error: err => console.log(err)
       });
   }
 
-  onPageChange(pageInfo: PageEvent) {
+  public onPageChange(pageInfo: PageEvent): void {
     this.loading = true;
     this.router.navigate(['/list'], {queryParams: {page: pageInfo.pageIndex}});
+  }
 
+  public ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }
