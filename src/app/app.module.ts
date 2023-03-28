@@ -6,13 +6,14 @@ import { AppComponent } from './app.component';
 import { ListComponent } from './list/list.component';
 import { ArticleComponent } from './article/article.component';
 import {HttpClientModule} from "@angular/common/http";
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {MatPaginatorModule} from "@angular/material/paginator";
 import { ItemComponent } from './item/item.component';
 import {MatTreeModule} from "@angular/material/tree";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import {TreeModule} from "@circlon/angular-tree-component";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
   declarations: [
@@ -31,6 +32,8 @@ import {TreeModule} from "@circlon/angular-tree-component";
     MatIconModule,
     MatButtonModule,
     TreeModule,
+    MatProgressSpinnerModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

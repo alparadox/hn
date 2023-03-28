@@ -1,4 +1,9 @@
-<div class="wrapper">
+<div class="wrapper" *ngIf="tree; else loader">
+  <button mat-raised-button color="primary" [routerLink]="['/list']">На главную</button>
+  <div class="news">
+    <app-item [item]="item"></app-item>
+  </div>
+  <p *ngIf="tree.length === 0">Комментариев нет</p>
   <tree-root [nodes]="tree">
     <ng-template #treeNodeTemplate let-node let-index="index">
       <div>
@@ -11,3 +16,9 @@
     </ng-template>
   </tree-root>
 </div>
+
+<ng-template #loader>
+  <div class="loader">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>

@@ -14,6 +14,7 @@ import {PageEvent} from "@angular/material/paginator";
 export class ListComponent implements OnInit {
   public pageInfo: any = {};
   public list: any = [];
+  public loading = true;
 
   constructor(
     private dataService: DataService,
@@ -39,13 +40,14 @@ export class ListComponent implements OnInit {
         this.pageInfo.hitsPerPage = data.hitsPerPage;
         this.pageInfo.nbHits = data.nbHits;
         this.pageInfo.nbPages = data.nbPages;
+        this.loading = false;
         this.list = data.hits;
         this.cdr.detectChanges();
       });
   }
 
   onPageChange(pageInfo: PageEvent) {
-    console.log(pageInfo)
+    this.loading = true;
     this.router.navigate(['/list'], {queryParams: {page: pageInfo.pageIndex}});
 
   }
