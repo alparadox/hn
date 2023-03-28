@@ -8,12 +8,14 @@ import { ArticleComponent } from './article/article.component';
 import {HttpClientModule} from "@angular/common/http";
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {MatPaginatorModule} from "@angular/material/paginator";
+import { ItemComponent } from './item/item.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListComponent,
-    ArticleComponent
+    ArticleComponent,
+    ItemComponent
   ],
   imports: [
     BrowserModule,
